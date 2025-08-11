@@ -1,5 +1,5 @@
 export class Game {
-    public players:string[] = ['Laura','Steven','Sofie','Leon'];
+    public players:string[] = [];
     public stack:string[] = [];
     public playedCars:string[] = [];
     public currentPlayer:number = 0;
