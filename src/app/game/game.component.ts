@@ -4,14 +4,16 @@ import { Game } from '../../models/game';
 import { PlayerComponent } from '../player/player.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { GameInfoComponent } from '../game-info/game-info.component';
 
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [NgFor, NgStyle, NgIf, PlayerComponent, MatButtonModule, MatIconModule, MatDialogModule],
+  imports: [NgFor, NgStyle, NgIf, PlayerComponent,GameInfoComponent, MatButtonModule, MatIconModule, MatDialogModule,MatCardModule],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
@@ -34,8 +36,8 @@ export class GameComponent implements OnInit {
       if (card !== undefined) {
         this.currentCard = card;
         this.pickCardAnimation = true;
-        console.log('new card: ' + card);
-        console.log(this.game);
+        this.game!.currentPlayer++
+        this.game!.currentPlayer = this.game!.currentPlayer % this.game!.players.length
 
         setTimeout(() => {
           this.game!.playedCars.push(card);
@@ -47,16 +49,14 @@ export class GameComponent implements OnInit {
 
   newGame() {
     this.game = new Game();
-    console.log(this.game)
   }
 
     openAddPlayerDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe((name: string) => {
-      if (name) {
+      if (name && name.length > 0) {
         this.game!.players.push(name);
-        console.log('Players:', this.game!.players);
       }
     });
   }
