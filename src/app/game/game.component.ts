@@ -50,15 +50,6 @@ export class GameComponent implements OnInit {
     console.log(this.game)
   }
 
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(DialogAddPlayerComponent);
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     if (result !== undefined) {
-  //     }
-  //   });
-  // }
     openAddPlayerDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
