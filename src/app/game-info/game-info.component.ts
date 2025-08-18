@@ -29,7 +29,7 @@ export class GameInfoComponent implements OnChanges{
 
   title:string = '';
   description:string = ''
-  @Input()card:string='';
+  @Input()card?:string='';
   constructor() {}
 
   ngOnInit(): void {

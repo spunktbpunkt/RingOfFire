@@ -1,4 +1,4 @@
-.start-screen{
+.start-screen {
     background-color: #404040;
     width: 100vw;
     max-width: 100%;
@@ -6,21 +6,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    > img {
-        height: 90vh;
+    // @media (max-width: 960px) {
+    // }
+    overflow: hidden;
+
+    >img {
+        max-height: 90vh;
+        max-width: 100%;
+        height: auto;
+        width: auto;
+        display: block;
+        margin: 0 auto;
     }
 }
 
-.start-label-box{
+.start-label-box {
     position: absolute;
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
     bottom: 100px;
-    > img {
+
+    >img {
         width: 40vw;
+        min-width: 250px;
+        max-width: 500px;
         height: auto;
+
         &:hover {
             filter: brightness(1.25);
             cursor: pointer;

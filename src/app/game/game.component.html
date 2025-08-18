@@ -11,17 +11,17 @@
         <img (click)="takeCard()" class="top-card" style="right:25px" src="assets/img/cards/card_cover.png" alt="">
 
         <!-- Animation taking top card from stack -->
-        <img class="played-card" *ngFor="let card of game!.playedCars; let i = index"
+        <img class="played-card" *ngFor="let card of game!.playedCards; let i = index"
             src="assets/img/cards/{{ card }}.png" alt="">
 
         <!-- stack for played Cards -->
-        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-card" style="right:25px"
-            src="assets/img/cards/{{ currentCard }}.png" alt="">
+        <img (click)="takeCard()" *ngIf="game?.pickCardAnimation" class="pick-card" style="right:25px"
+            src="assets/img/cards/{{ game?.currentCard }}.png" alt="">
     </div>
 
 </div>
 
-<app-game-info [card]="currentCard" class="pin-bottom"></app-game-info>
+<app-game-info [card]="game?.currentCard" class="pin-bottom"></app-game-info>
 
 <button mat-fab class="btn-add" (click)="openAddPlayerDialog()">
     <mat-icon>add</mat-icon>

@@ -5,6 +5,20 @@
     font-size: 16px;
 }
 
-.title{
+.title {
     padding: 10px 10px;
+}
+
+mat-card {
+    @media (max-width: 700px) {
+        min-height: 150px;
+    }
+}
+
+mat-card-content {
+    >p {
+        @media (max-width: 600px) {
+            padding-right: 100px;;
+        }
+    }
 }
