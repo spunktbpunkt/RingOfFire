@@ -1,0 +1,30 @@
+.player {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(172, 172, 172, 0.5);
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  overflow: hidden;
+
+  > img {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+
+  > span {
+    font-size: 14px;
+    width: 100%;               // wichtig fürs ellipsis
+    text-align: center;        // kurze Namen mittig
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.player-active {
+  background-color: orange !important;
+}

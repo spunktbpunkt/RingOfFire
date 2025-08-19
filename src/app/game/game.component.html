@@ -1,5 +1,3 @@
-
-
 <div class="field">
 
     <div class="card-stack">
@@ -27,9 +25,18 @@
     <mat-icon>add</mat-icon>
 </button>
 
-<app-player 
+<div class="scroll-container hide-mobile">
+    <app-player (click)="editPlayer(i)" *ngFor="let player of game!.players, let i = index" [name]="player"
+        [playerActive]="i == game!.currentPlayer"></app-player>
+</div>
+<!-- <app-player
 *ngFor="let player of game!.players, let i = index" 
 [ngStyle]="{'top.px':100+i*90}" 
-class="player-position"
+class="player-position hide-mobile"
 [name]="player"
-[playerActive]="i == game!.currentPlayer"></app-player>
+[playerActive]="i == game!.currentPlayer"></app-player> -->
+
+<div class="scroll-container-mobile hide-desktop">
+    <app-player-mobile (click)="editPlayer(i)" *ngFor="let player of game!.players, let i = index" [name]="player"
+        [playerActive]="i == game!.currentPlayer"></app-player-mobile>
+</div>

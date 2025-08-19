@@ -11,9 +11,10 @@
 .card-stack {
     position: relative;
 
-    > img {
+    >img {
         position: absolute;
         width: 200px;
+
         @media (max-width: 960px) {
             width: 150px;
         }
@@ -32,7 +33,7 @@
 .played-card {
     right: 25px;
     transform: scale(1.3) translateX(250px) translateY(-250px) rotate(-10deg);
-    
+
     @media (max-width: 700px) {
         transform: scale(1.3) translateX(25px) translateY(-235px) rotate(-10deg);
     }
@@ -100,10 +101,42 @@
     left: 100px;
     right: 100px;
     height: 100px;
+
     @media (max-width: 700px) {
         left: 0px;
         right: 0px;
         bottom: 0px;
         height: 125px;
+    }
+}
+
+.scroll-container-mobile {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.scroll-container {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 10px;
+    overflow-y: auto;
+    height: calc(100vh - 200px);
+}
+
+app-player, app-player-mobile {
+    cursor: pointer;
+    &:hover {
+        filter: brightness(1.05);
     }
 }

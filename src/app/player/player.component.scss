@@ -1,24 +1,31 @@
 .player {
-    width: 300px;
-    display: flex;
-    align-items: center;
-    background-color: rgba(172, 172, 172, 0.5);
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
+  width: 300px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(172, 172, 172, 0.5);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
 
-    >span {
-        font-size: 32px;
-        margin-left: 16px;
-    }
+  >img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
 
-    >img {
-        width: 70px;
-        height: 70px;
-        object-fit: cover;
-        border-radius: 100%;
-    }
+  >span {
+    flex: 1;               // nimmt den restlichen Platz
+    font-size: 32px;
+    line-height: 1.2;      // verhindert Abschneiden
+    margin: 0 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .player-active {
     background-color: orange !important;
 }
+

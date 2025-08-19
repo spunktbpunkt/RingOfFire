@@ -2,6 +2,7 @@ import { NgFor, NgIf, NgStyle } from '@angular/common';
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Game } from '../../models/game';
 import { PlayerComponent } from '../player/player.component';
+import { PlayerMobileComponent } from '../player-mobile/player-mobile.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -18,7 +19,7 @@ import { DocumentData } from '@angular/fire/firestore';
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [NgFor, NgStyle, NgIf, PlayerComponent, GameInfoComponent, MatButtonModule, MatIconModule, MatDialogModule, MatCardModule],
+  imports: [NgFor, NgStyle, NgIf, PlayerComponent, PlayerMobileComponent, GameInfoComponent, MatButtonModule, MatIconModule, MatDialogModule, MatCardModule],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
@@ -103,7 +104,9 @@ export class GameComponent implements OnInit {
     });
   }
 
-  
+  editPlayer(playerId: number){
+    console.log('Edit Player', playerId)
+  }
 
 
 }
