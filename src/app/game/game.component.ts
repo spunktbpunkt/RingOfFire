@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 import { Firestore, collection, collectionData, setDoc, doc, docData } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentData } from '@angular/fire/firestore';
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
 
 
 
@@ -49,6 +50,7 @@ export class GameComponent implements OnInit {
         this.game!.currentPlayer = game.currentPlayer;
         this.game!.playedCards = game.playedCards;
         this.game!.players = game.players;
+        this.game!.player_images = game.player_images;
         this.game!.stack = game.stack;
         this.game!.pickCardAnimation = game.pickCardAnimation;
         this.game!.currentCard = game.currentCard;
@@ -78,7 +80,7 @@ export class GameComponent implements OnInit {
         this.game!.currentPlayer++
         this.game!.currentPlayer = this.game!.currentPlayer % this.game!.players.length
         await this.saveGame();
-        
+
 
         setTimeout(() => {
           this.game!.playedCards.push(card);
@@ -99,14 +101,28 @@ export class GameComponent implements OnInit {
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
         this.game!.players.push(name);
+        this.game!.player_images.push('1.webp');
         this.saveGame();
       }
     });
   }
 
-  editPlayer(playerId: number){
-    console.log('Edit Player', playerId)
-  }
+editPlayer(playerId: number) {
+  console.log('Edit Player', playerId);
+  const dialogRef = this.dialog.open(EditPlayerComponent);
+
+  dialogRef.afterClosed().subscribe((change: string) => {
+    console.log('Received change', change);
+    
+    // Überprüfe erst, ob game und das Array existieren
+    if (this.game && this.game.player_images && change) {
+      this.game.player_images[playerId] = change;
+      this.saveGame();
+    }
+  });
+}
+
+
 
 
 }

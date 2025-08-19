@@ -27,7 +27,7 @@
 
 <div class="scroll-container hide-mobile">
     <app-player (click)="editPlayer(i)" *ngFor="let player of game!.players, let i = index" [name]="player"
-        [playerActive]="i == game!.currentPlayer"></app-player>
+        [playerActive]="i == game!.currentPlayer" [image]="game?.player_images?.[i] || '1.webp'"></app-player>
 </div>
 <!-- <app-player
 *ngFor="let player of game!.players, let i = index" 
@@ -38,5 +38,5 @@ class="player-position hide-mobile"
 
 <div class="scroll-container-mobile hide-desktop">
     <app-player-mobile (click)="editPlayer(i)" *ngFor="let player of game!.players, let i = index" [name]="player"
-        [playerActive]="i == game!.currentPlayer"></app-player-mobile>
+        [playerActive]="i == game!.currentPlayer" [image]="game?.player_images?.[i] || '1.webp'"></app-player-mobile>
 </div>

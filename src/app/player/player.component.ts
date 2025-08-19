@@ -5,9 +5,10 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './player.component.html',
-  styleUrl: './player.component.scss'
+  styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent {
- @Input()name = "";
+ @Input()name!:string;
  @Input()playerActive: boolean = false;
+ @Input() image: string = '1.webp';
 }

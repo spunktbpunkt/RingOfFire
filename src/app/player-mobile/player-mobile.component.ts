@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './player-mobile.component.scss'
 })
 export class PlayerMobileComponent {
- @Input()name = "";
+ @Input()name!:string;
  @Input()playerActive: boolean = false;
+ @Input() image: string = '1.webp';
 }
