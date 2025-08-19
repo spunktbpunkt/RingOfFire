@@ -2,7 +2,10 @@
     width: 100vw;
     height: 100vh;
     max-width: 100%;
-    background-image: url('../../assets/img/board.jpg');
+    background-image: url('/angular-projects/ringoffire/assets/img/board.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
