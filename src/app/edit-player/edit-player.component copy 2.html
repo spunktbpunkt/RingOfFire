@@ -1,0 +1,41 @@
+<!-- <h2 mat-dialog-title>Edit player</h2>
+
+<div>
+    <img class="profile-picture" [mat-dialog-close]="picture" *ngFor="let picture of allProfilePictures"
+        src="../../assets/img/profile/{{ picture }}" alt="">
+</div>
+
+<mat-dialog-actions>
+    <button mat-button (click)="dialogRef.close()">Close</button>
+    <button mat-button [mat-dialog-close]="'DELETE'" cdkFocusInitial>DELETE</button>
+</mat-dialog-actions> -->
+
+
+
+
+
+
+
+
+
+
+<h2 mat-dialog-title>Edit player</h2>
+<mat-dialog-content>
+    <p>Please choose a profile Picture.</p>
+    <mat-form-field>
+        <div>
+            <img class="profile-picture" [mat-dialog-close]="picture" *ngFor="let picture of allProfilePictures"
+                src="../../assets/img/profile/{{ picture }}" alt="">
+        </div>
+        <!-- <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="name"/> -->
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="dialogRef.close()">Close</button>
+    <button mat-button [mat-dialog-close]="'DELETE'" cdkFocusInitial>DELETE</button>
+</mat-dialog-actions>
+<!-- <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [disabled]="name.length == 0" [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+</mat-dialog-actions> -->

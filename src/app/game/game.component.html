@@ -1,4 +1,4 @@
-<div class="field">
+<div class="field" *ngIf="!gameOver">
 
     <div class="card-stack">
         <!-- Card stack -->
@@ -19,13 +19,21 @@
 
 </div>
 
-<app-game-info [card]="game?.currentCard" class="pin-bottom"></app-game-info>
+<div class="gameOver" *ngIf="gameOver">
+    <div class="image-container">
+        <img src="assets/img/cards/aces.png" alt="">
+        <h1>GAME OVER</h1>
+    </div>
+</div>
 
-<button mat-fab class="btn-add" (click)="openAddPlayerDialog()">
+
+<app-game-info *ngIf="!gameOver" [card]="game?.currentCard" class="pin-bottom"></app-game-info>
+
+<button *ngIf="!gameOver" mat-fab class="btn-add" (click)="openAddPlayerDialog()">
     <mat-icon>add</mat-icon>
 </button>
 
-<div class="scroll-container hide-mobile">
+<div *ngIf="!gameOver" class="scroll-container hide-mobile">
     <app-player (click)="editPlayer(i)" *ngFor="let player of game!.players, let i = index" [name]="player"
         [playerActive]="i == game!.currentPlayer" [image]="game?.player_images?.[i] || '1.webp'"></app-player>
 </div>
@@ -36,7 +44,7 @@ class="player-position hide-mobile"
 [name]="player"
 [playerActive]="i == game!.currentPlayer"></app-player> -->
 
-<div class="scroll-container-mobile hide-desktop">
+<div *ngIf="!gameOver" class="scroll-container-mobile hide-desktop">
     <app-player-mobile (click)="editPlayer(i)" *ngFor="let player of game!.players, let i = index" [name]="player"
         [playerActive]="i == game!.currentPlayer" [image]="game?.player_images?.[i] || '1.webp'"></app-player-mobile>
 </div>

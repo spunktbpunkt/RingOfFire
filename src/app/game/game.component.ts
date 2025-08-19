@@ -30,6 +30,7 @@ export class GameComponent implements OnInit {
   firestore: Firestore = inject(Firestore);
   item$!: Observable<DocumentData | undefined>;
   gameId: string = '';
+  gameOver: boolean = false;
 
   constructor(private route: ActivatedRoute, private dialog: MatDialog) {
     const aCollection = collection(this.firestore, 'items')
@@ -71,6 +72,9 @@ export class GameComponent implements OnInit {
 
   async takeCard() {
     if (!this.game) return;
+    if(this.game!.stack.length == 0){
+      this.gameOver = true;
+    }else {
     if (!this.game.pickCardAnimation) {
       const card = this.game!.stack.pop();
       if (card !== undefined) {
@@ -88,6 +92,7 @@ export class GameComponent implements OnInit {
           this.saveGame();
         }, 1000);
       }
+    }
     }
   }
 
@@ -107,20 +112,25 @@ export class GameComponent implements OnInit {
     });
   }
 
-editPlayer(playerId: number) {
-  console.log('Edit Player', playerId);
-  const dialogRef = this.dialog.open(EditPlayerComponent);
+  editPlayer(playerId: number) {
+    console.log('Edit Player', playerId);
+    const dialogRef = this.dialog.open(EditPlayerComponent);
 
-  dialogRef.afterClosed().subscribe((change: string) => {
-    console.log('Received change', change);
-    
-    // Überprüfe erst, ob game und das Array existieren
-    if (this.game && this.game.player_images && change) {
-      this.game.player_images[playerId] = change;
-      this.saveGame();
-    }
-  });
-}
+    dialogRef.afterClosed().subscribe((change: string) => {
+      if (change) {
+        if (change == 'DELETE') {
+          this.game?.players.splice(playerId,1)
+          this.game?.player_images.splice(playerId,1)
+        } else {
+          if (this.game && this.game.player_images && change) {
+            this.game.player_images[playerId] = change;
+          }
+        }
+        this.saveGame();
+
+      }
+    });
+  }
 
 
 

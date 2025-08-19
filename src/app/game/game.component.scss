@@ -141,3 +141,37 @@ app-player, app-player-mobile {
         filter: brightness(1.05);
     }
 }
+
+.gameOver {
+    background-color: #404040;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 100%);
+            margin: 0;
+            color: black; // oder eine andere Farbe für bessere Sichtbarkeit
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); // Optional: Schatten für bessere Lesbarkeit
+            font-size: 3rem; // Anpassen je nach gewünschter Größe
+            text-align: center;
+            white-space: nowrap;
+        }
+    }
+}
