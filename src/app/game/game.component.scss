@@ -43,10 +43,11 @@
 }
 
 .pick-card {
-    // Entferne den statischen transform - die Animation bestimmt die Endposition
     animation: pick-card-animation 1s ease-in-out forwards;
+}
 
-    @media (max-width: 700px) {
+@media (max-width: 700px) {
+    .pick-card {
         animation: pick-card-animation-small 1s ease-in-out forwards;
     }
 }
@@ -138,8 +139,10 @@
 
 }
 
-app-player, app-player-mobile {
+app-player,
+app-player-mobile {
     cursor: pointer;
+
     &:hover {
         filter: brightness(1.05);
     }

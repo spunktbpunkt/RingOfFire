@@ -41,13 +41,11 @@ export class GameComponent implements OnInit {
     this.newGame();
     this.route.params.subscribe((params) => {
       this.gameId = params['id'];
-      console.log('Game ID:', this.gameId);
 
       const gameDoc = doc(this.firestore, `games/${this.gameId}`);
       this.item$ = docData(gameDoc, { idField: 'id' });
 
       this.item$.subscribe((game: any) => {
-        console.log('game update', game)
         this.game!.currentPlayer = game.currentPlayer;
         this.game!.playedCards = game.playedCards;
         this.game!.players = game.players;
@@ -61,38 +59,32 @@ export class GameComponent implements OnInit {
 
   async saveGame() {
     if (!this.game) return;
-
-    // bestehendes Dokument referenzieren
     const gameDoc = doc(this.firestore, `games/${this.gameId}`);
-
-    // das Dokument mit dem aktuellen Spielzustand überschreiben
     await setDoc(gameDoc, this.game.toJson());
-    console.log('Spiel gespeichert in bestehendem Dokument:', this.gameId);
   }
 
   async takeCard() {
     if (!this.game) return;
-    if(this.game!.stack.length == 0){
+    if (this.game!.stack.length == 0) {
       this.gameOver = true;
-    }else {
-    if (!this.game.pickCardAnimation) {
-      const card = this.game!.stack.pop();
-      if (card !== undefined) {
-        this.game.currentCard = card;
-        this.game.pickCardAnimation = true;
-        console.log(this.game.pickCardAnimation)
-        this.game!.currentPlayer++
-        this.game!.currentPlayer = this.game!.currentPlayer % this.game!.players.length
-        await this.saveGame();
+    } else {
+      if (!this.game.pickCardAnimation) {
+        const card = this.game!.stack.pop();
+        if (card !== undefined) {
+          this.game.currentCard = card;
+          this.game.pickCardAnimation = true;
+          this.game!.currentPlayer++
+          this.game!.currentPlayer = this.game!.currentPlayer % this.game!.players.length
+          await this.saveGame();
 
 
-        setTimeout(() => {
-          this.game!.playedCards.push(card);
-          this.game!.pickCardAnimation = false;
-          this.saveGame();
-        }, 1000);
+          setTimeout(() => {
+            this.game!.playedCards.push(card);
+            this.game!.pickCardAnimation = false;
+            this.saveGame();
+          }, 1000);
+        }
       }
-    }
     }
   }
 
@@ -113,14 +105,13 @@ export class GameComponent implements OnInit {
   }
 
   editPlayer(playerId: number) {
-    console.log('Edit Player', playerId);
     const dialogRef = this.dialog.open(EditPlayerComponent);
 
     dialogRef.afterClosed().subscribe((change: string) => {
       if (change) {
         if (change == 'DELETE') {
-          this.game?.players.splice(playerId,1)
-          this.game?.player_images.splice(playerId,1)
+          this.game?.players.splice(playerId, 1)
+          this.game?.player_images.splice(playerId, 1)
         } else {
           if (this.game && this.game.player_images && change) {
             this.game.player_images[playerId] = change;

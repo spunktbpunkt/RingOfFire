@@ -37,7 +37,6 @@ export class GameInfoComponent implements OnChanges{
   }
   
 ngOnChanges(): void {
-  console.log('current Card: ' + this.card);
 
   if (!this.card) {
     return; // nichts tun, wenn noch keine Karte gesetzt ist

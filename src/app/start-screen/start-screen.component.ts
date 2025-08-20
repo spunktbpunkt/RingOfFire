@@ -24,7 +24,6 @@ export class StartScreenComponent {
 
     // DOKUMENT HINZUFÜGEN
     let docRef = await addDoc(gamesCollection, game.toJson())
-    console.log('neue spiel id',docRef.id);
 
     // ZUR SPIELROUTE MIT ID FÜHREN
     this.router.navigateByUrl(`/game/${docRef.id}`);
